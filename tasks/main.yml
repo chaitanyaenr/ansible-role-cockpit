@@ -1,0 +1,21 @@
+---
+- name: Install cockpit via dnf
+  dnf: name={{ item }} state=latest
+  with_items:
+    - cockpit
+  when: ansible_pkg_mgr == 'dnf'
+- name: Istall cockpit via yum
+  yum: name={{ item }} state=latest
+  with_items:
+    - cockpit
+  when: ansible_pkg_mgr == 'yum'
+- name: Allow connections to port 9090 through firewall
+  firewalld:
+    port: 9090/tcp
+    permanent: true
+    state: disabled
+- name: Enable and start cockpit
+  service:
+    name: cockpit.socket
+    state: started
+    enabled: yes
