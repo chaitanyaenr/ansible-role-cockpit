@@ -1,4 +1,4 @@
-Ansible Role: Tuned
+Ansible Role: Cockpit
 =========
 An Ansible role that installs cockpit and enables it on RHEL, Fedora.
 
